@@ -1,0 +1,18 @@
+<!-- <button class="btn btn-danger" (click)="triggerModal(modalData)">Open Modal</button> -->
+
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Error Occurred</h4>
+    <a href="#" class="close" (click)="modal.dismiss('Cross click'); errorLog()">
+      <span aria-hidden="true">×</span></a>
+    <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); errorLog()">
+      <span aria-hidden="true">×</span>
+    </button> -->
+  </div>
+  <div class="modal-body">
+    <div class="alert alert-danger">{{error}}</div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="errorLog()">Close</button>
+  </div>
+</ng-template>

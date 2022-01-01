@@ -1,0 +1,87 @@
+<!-- <button class="m-3" (click)="login()">Login</button>
+<button class="m-3" (click)="logout()">Log out</button> -->
+<div class="text-center" *ngIf="spin">
+    <app-spinner></app-spinner>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card col-md-8 offset-md-2" *ngIf="!spin">
+                <div class="card-header bg-info text-center">
+                    Login Form
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formgroup" (ngSubmit)="onSubmit()" >
+                        <div class="form-group">
+                            <label for="email">Email :</label>
+                            <input type="email" class="form-control" formControlName="email">
+                        </div>
+                        <div *ngIf="!formgroup.controls.email.valid && formgroup.get('email').touched" class="alert alert-danger">
+                               <span *ngIf="formgroup.controls.email.errors.required">Email required</span> 
+                               <span *ngIf="formgroup.controls.email.errors.email"> Invalid Email</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password :</label>
+                            <input type="password" class="form-control" formControlName="password" >
+                            <div *ngIf="formgroup.controls.password.invalid && formgroup.get('password').touched" class="alert alert-danger">
+                                <span *ngIf="formgroup.controls.password.errors.required">Password required required</span> 
+                               <span *ngIf="formgroup.controls.password.errors.minlength">password length must be atleast 6 character</span>
+                            </div>
+                        </div>
+                        <!-- <fieldset formGroupName="address">
+                            <div class="form-group">
+                                <label for="password">street :</label>
+                                <input type="text" class="form-control" formControlName="street" >
+                            </div>
+                            <div class="form-group">
+                                <label for="password">city :</label>
+                                <input type="text" class="form-control" formControlName="city" >
+                            </div>
+                        </fieldset> -->
+                        <div class="form-group">
+                            <button class="btn btn-primary my-2" type="submit" [disabled]="!formgroup.valid" >Submit</button>
+                            <button class="btn btn-warning mx-2" type="button" (click)="addLogin()"> Login</button>
+                            <button class="btn btn-success mx-2" type="button" (click)="getdetails()">Get</button>
+                            <button class="btn btn-success mx-2" type="button" (click)="deletedetails()">Delete</button>
+                            <button class="btn btn-primary mx-2" type="button" (click)="googleLogin()">Login with Google</button>
+                            <button class="btn btn-danger mx-2" type="button" (click)="signOut()">Sign Out</button>
+                        </div>
+                       
+
+                        <!-- <div formArrayName="formArray">
+                            <div class="form-group" *ngFor="let hobby of hobbies; let i= index">
+                                <label for="name">Name :</label>
+                                <input type="text" class="form-control" [formControlName]="i" >
+                            </div>
+                        </div> -->
+                           
+                        <!-- <app-error-modal *ngIf="error" [error]="error"></app-error-modal> -->
+                      
+
+                    </form>
+                    <div>
+                        <h1>Sign In with Your Phone Number</h1>
+
+                        <label >Phone Number</label><br>
+                        <input type="text" class="form-control" [(ngModel)]="phoneNumber">
+                    </div> <br>
+                    <div id="recaptcha-container"></div>
+                    <div>
+                        <button  class="btn btn-success my-2" type="button" (click)="sendLoginCode()">SMS Text Login Code</button>
+
+                        <div>
+                          <hr>
+                          <label for="code">Enter your Verification Code Here</label><br>
+                          <input type="text" name="code" class="form-control" [(ngModel)]="verificationCode">
+                      
+                          <button class="btn btn-success my-2" type="button" (click)="verifyLoginCode()">Verify</button>
+                        </div>
+                    </div>
+                    <!-- {{User.name}}{{User.password}} -->
+                    {{loginValues | json}}
+                </div>
+            </div>
+            <ng-template appModal></ng-template>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <ul>
+                <li *ngFor="let user of users">
+                    <a [routerLink]="['/user',user.id]"
+                    routerLinkActive="active" >{{user.name}}</a>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let user of users | filter:'JAVA'">
+                    <p>{{user  | json}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
